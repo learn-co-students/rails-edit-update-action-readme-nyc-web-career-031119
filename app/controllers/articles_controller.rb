@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    # byebug
     @article = Article.find(params[:id])
   end
 
@@ -12,6 +13,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    # byebug
     @article = Article.new
     @article.title = params[:title]
     @article.description = params[:description]
@@ -19,5 +21,20 @@ class ArticlesController < ApplicationController
     redirect_to article_path(@article)
   end
 
-  # add edit and update methods here
+def edit
+  # byebug
+  @article = Article.find(params[:id])
+end
+
+def update
+  #  raise params.inspect
+  # byebug
+  @article = Article.find(params[:id])
+# byebug
+  @article.update(title: params[:article][:title], description: params[:article][:description])
+
+
+  redirect_to article_path(@article.id)
+end
+
 end
